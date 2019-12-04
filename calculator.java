@@ -8,6 +8,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 public class calculator {
@@ -15,12 +17,13 @@ public class calculator {
 	private JFrame frame;
 	private JTextField MassIn;
 	private JTextField CIn;
-	JRadioButton CoolingTwo = new JRadioButton("Cooling");
-	JRadioButton CoolingOne = new JRadioButton("Cooling");
 	private JTextField TIIn;
 	private JTextField MinTwo;
+	JButton btnEnter = new JButton("Enter");
 	private JTextField CinTwo;
 	private JTextField TIInTwo;
+	
+	JLabel lblOut = new JLabel("Out:");
 
 	/**
 	 * Launch the application.
@@ -50,102 +53,97 @@ public class calculator {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 615, 387);
+		frame.setBounds(100, 100, 615, 307);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JButton btnEnter = new JButton("Enter");
 		btnEnter.setFocusable(false);
-		btnEnter.setBounds(233, 232, 115, 29);
+		btnEnter.setBounds(230, 157, 115, 29);
 		frame.getContentPane().add(btnEnter);
-		
-		JLabel lblOut = new JLabel("Out:");
 		lblOut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOut.setFont(new Font("Tahoma", Font.BOLD, 23));
-		lblOut.setBounds(0, 285, 593, 36);
+		lblOut.setBounds(0, 202, 593, 36);
 		frame.getContentPane().add(lblOut);
 		
 		MassIn = new JTextField();
-		MassIn.setBounds(92, 94, 146, 26);
+		MassIn.setBounds(77, 19, 146, 26);
 		frame.getContentPane().add(MassIn);
 		MassIn.setColumns(10);
 		
 		JLabel lblM = new JLabel("M:");
 		lblM.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblM.setBounds(15, 97, 69, 20);
+		lblM.setBounds(0, 22, 69, 20);
 		frame.getContentPane().add(lblM);
 		
 		JLabel lblC = new JLabel("C:");
 		lblC.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblC.setBounds(15, 141, 69, 20);
+		lblC.setBounds(0, 66, 69, 20);
 		frame.getContentPane().add(lblC);
 		
 		CIn = new JTextField();
 		CIn.setColumns(10);
-		CIn.setBounds(92, 138, 146, 26);
+		CIn.setBounds(77, 63, 146, 26);
 		frame.getContentPane().add(CIn);
 		
 		JLabel lblTf = new JLabel("TI:");
 		lblTf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTf.setBounds(15, 180, 69, 20);
+		lblTf.setBounds(0, 105, 69, 20);
 		frame.getContentPane().add(lblTf);
 		
 		TIIn = new JTextField();
 		TIIn.setColumns(10);
-		TIIn.setBounds(92, 177, 146, 26);
+		TIIn.setBounds(77, 102, 146, 26);
 		frame.getContentPane().add(TIIn);
 		
 		MinTwo = new JTextField();
 		MinTwo.setColumns(10);
-		MinTwo.setBounds(404, 91, 146, 26);
+		MinTwo.setBounds(389, 16, 146, 26);
 		frame.getContentPane().add(MinTwo);
 		
 		JLabel label = new JLabel("M:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(327, 94, 69, 20);
+		label.setBounds(312, 19, 69, 20);
 		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("C:");
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setBounds(327, 138, 69, 20);
+		label_1.setBounds(312, 63, 69, 20);
 		frame.getContentPane().add(label_1);
 		
 		CinTwo = new JTextField();
 		CinTwo.setColumns(10);
-		CinTwo.setBounds(404, 135, 146, 26);
+		CinTwo.setBounds(389, 60, 146, 26);
 		frame.getContentPane().add(CinTwo);
 		
 		JLabel lblTi = new JLabel("TI:");
 		lblTi.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTi.setBounds(327, 177, 69, 20);
+		lblTi.setBounds(312, 102, 69, 20);
 		frame.getContentPane().add(lblTi);
 		
 		TIInTwo = new JTextField();
 		TIInTwo.setColumns(10);
-		TIInTwo.setBounds(404, 174, 146, 26);
+		TIInTwo.setBounds(389, 99, 146, 26);
 		frame.getContentPane().add(TIInTwo);
-		
-		CoolingOne.setBounds(78, 46, 155, 29);
-		CoolingOne.setFocusable(false);
-		CoolingOne.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(CoolingOne.isSelected()) {
-					CoolingTwo.setSelected(false);
-				}
+		btnEnter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//TopOne*TopTwo
+				//-------------(divide)
+				//BottomOne*BottomTwo
+				Double TIOne=Double.parseDouble(TIIn.getText());
+				Double TITwo=Double.parseDouble(TIInTwo.getText());
+				Double C=Double.parseDouble(CIn.getText());
+				Double CTwo=Double.parseDouble(CinTwo.getText());
+				Double massOne=Double.parseDouble(MassIn.getText());
+				Double massTwo=Double.parseDouble(MinTwo.getText());
+				Double topOne= TIOne*C*massOne;
+				Double topTwo=TITwo*CTwo*massTwo;
+				Double bottomOne=C*massOne;
+				Double bottonTwo=CTwo*massTwo;
+				NumberFormat formatter = new DecimalFormat("#0.00");
+				lblOut.setText("Out: "+formatter.format((topOne+topTwo)/(bottomOne+bottonTwo)));
 			}
 		});
-		frame.getContentPane().add(CoolingOne);
-		
-		CoolingTwo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(CoolingTwo.isSelected()) {
-					CoolingOne.setSelected(false);
-				}
-			}
-		});
-		CoolingTwo.setSelected(true);
-		CoolingTwo.setFocusable(false);
-		CoolingTwo.setBounds(395, 46, 155, 29);
-		frame.getContentPane().add(CoolingTwo);
 	}
 }
