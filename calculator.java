@@ -159,7 +159,7 @@ public class calculator {
 				Double bottomOne=C*massOne;
 				Double bottonTwo=CTwo*massTwo;
 				NumberFormat formatter = new DecimalFormat("#0.00");
-				lblOut.setText("Out: "+formatter.format((topOne+topTwo)/(bottomOne+bottonTwo)));
+				lblOut.setText(formatter.format((topOne+topTwo)/(bottomOne+bottonTwo))+"°");
 			}
 		});
 	}
