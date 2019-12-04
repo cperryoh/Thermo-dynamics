@@ -24,6 +24,7 @@ public class calculator {
 	private JTextField TIInTwo;
 	
 	JLabel lblOut = new JLabel("Out:");
+	private final JLabel lbldivided = new JLabel("-----------------------------(Divided)");
 
 	/**
 	 * Launch the application.
@@ -53,7 +54,7 @@ public class calculator {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 615, 307);
+		frame.setBounds(100, 100, 615, 435);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		btnEnter.setFocusable(false);
@@ -61,7 +62,7 @@ public class calculator {
 		frame.getContentPane().add(btnEnter);
 		lblOut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOut.setFont(new Font("Tahoma", Font.BOLD, 23));
-		lblOut.setBounds(0, 202, 593, 36);
+		lblOut.setBounds(0, 343, 593, 36);
 		frame.getContentPane().add(lblOut);
 		
 		MassIn = new JTextField();
@@ -123,6 +124,22 @@ public class calculator {
 		TIInTwo.setColumns(10);
 		TIInTwo.setBounds(389, 99, 146, 26);
 		frame.getContentPane().add(TIInTwo);
+		
+		JLabel lblticmticm = new JLabel("(TI1*C1*M1)+(TI2*C2*M2)\r\n");
+		lblticmticm.setBounds(15, 178, 233, 54);
+		frame.getContentPane().add(lblticmticm);
+		lbldivided.setBounds(25, 210, 263, 41);
+		frame.getContentPane().add(lbldivided);
+		
+		JLabel lblcmcm = new JLabel("(C1*M1)+(C2*M2)");
+		lblcmcm.setBounds(35, 243, 163, 54);
+		frame.getContentPane().add(lblcmcm);
+		
+		JLabel lblEquation = new JLabel("Equation");
+		lblEquation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEquation.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblEquation.setBounds(63, 141, 102, 33);
+		frame.getContentPane().add(lblEquation);
 		btnEnter.addActionListener(new ActionListener() {
 			
 			@Override
