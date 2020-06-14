@@ -1,2 +1,2 @@
 # Thermo-dynamics
-Calculator that determains the tempature that two materials equalize at based off provided varibles.
+Calculator that determines the temperature that two materials equalize at based off provided variables.
